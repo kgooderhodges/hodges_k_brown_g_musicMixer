@@ -40,77 +40,133 @@ a {text-decoration: none;}
 	display: flex;
 	flex-direction: row;
 	text-align: center;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: space-between;
 }
 
 #logo {
 	align-items: center;
-	width: 30%;
+	width: 50%;
 }
+/* =========Colours=========*/
 
-.rightHeader {
-	width: 60%;
-	height: 250px;
+.colorPicker {
+	width: 35%;
 	display: flex;
-	flex-direction: column;
-	text-align: right;
-	justify-content:space-between;
-
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
-.title {
-	text-align: right;
-	width: 100%;
-	margin-top: 20px;
-}
 
-#title img {
-	width: 100%;
-}
-
-.mainNav {
-	display: flex;
-	flex-direction:row;
-	justify-content: flex-end;
-}
-
-.mainNav .button {
-	margin-left: 10px;
-	background-color: #FF7BE3;
-	color: white; 
-	padding: 20px;
-}
-
-.button {
+.color{
+	height: 80px;
+	width: 120px;
+	margin: 10px;
 	text-align: center;
-	font-size: 40px;
+	line-height: 80px;
+	font-size: 20px;
 	font-weight: bold;
 	border-radius: 10px;
-	transition: background .2s ease-in-out;
-	transition: color .2s ease-in-out;
+	transition: text-shadow .2s ease-in-out;
 }
 
-.button:hover {
+.color:hover {
+	cursor: pointer; 	
+	text-shadow: 3px 3px 3px rgba(0,0,0, .5);
+}
+
+
+.pink {
+	color: #FF71CE;
+	background-color: #FF71CE ;}
+
+
+.blue{
+	color: #22EAE0;
+	background-color: #22EAE0 ;}
+
+
+.black{
+	color: #211830;
+	background-color: #211830 ;
+}
+
+
+.yellow{
+	color: #FFFB96;
+	background-color: #FFFB96 ;
+}
+
+
+.green{
+	color: #05FFA1;
 	background-color: #05FFA1 ;
-	cursor: pointer;
-	color:#211830;
-	box-shadow: 3px 3px 3px rgba(0,0,0, .5);
 }
 
-/* =========Gallery=========*/
+
+.purple{
+	color: #9D0FFD;
+	background-color: #9D0FFD;
+}
 
 .divider {
 	width: 100%;
-	height: 34px;
-	background-color: #22EAE0; 
+	height: 10px;
+	background-color: #211830; 
 	opacity: 80%;
 }
+
+
+/* =========Drop Area=========*/
+
+.dropCon {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	height: 400px;
+	margin-bottom: 20px;
+}
+
+.mainMusic {
+	/*background-image: url(../images/musicBG.svg)
+	Background to make that has the tv static look */
+	/*background-color: rgba(34, 234, 224, 0.8);cyan*/
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 48%;
+	height: 400px;
+	margin: 10px 0;
+	border-radius: 10px;
+}
+
+.dropZone {
+	width: 48%;
+	height: 380px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.dropItem {
+	background-color: rgba(34, 234, 224, 0.8);/*cyan*/
+	width: 48%;
+	height: 190px;
+	margin: 10px 0;
+	border-radius: 10px;
+}
+
+
+/* =========Gallery=========*/
 
 .info {
 	font-family: 'Tahoma', Arial, sans-serif;
 	font-weight: bold;
-	font-size: 36px;
+	font-size: 32px;
+	text-align: center;
+	text-transform: uppercase;
 	color: white;
 	text-shadow: 3px 3px 3px rgba(0,0,0, .5);
 	margin-bottom: 20px;
@@ -124,11 +180,12 @@ a {text-decoration: none;}
 	margin: 0 0 -20px -20px;  
 }
 
+
 .icon {
 	background-color: rgba(0, 0, 0, 0.8);
-	margin: 0 0 20px 20px; 
-	width: 200px;
-	height: 200px;
+	margin: 0 0 20px 10px; 
+	width: 120px;
+	height: 120px;
 	text-align: center;
 	border-radius: 10px;
 	display:flex;
@@ -137,75 +194,8 @@ a {text-decoration: none;}
 }
 
 
-/* =========Colours=========*/
-
-
-.colorPicker{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
-
-.color{
-	height: 100px;
-	width: 15%;
-	text-align: center;
-	line-height: 100px;
-	border: solid 5px;
-	font-size: 40px;
-	font-weight: bold;
-	text-shadow: 3px 3px 3px rgba(0,0,0, .5);
-	border-radius: 10px;
-	transition: background .2s ease-in-out;
-}
-
-.color:hover {cursor: pointer;}
-
-
-.pink {color: #FF71CE;}
-.pink:hover {background-color: #FF71CE ;}
-
-
-.blue{color: #22EAE0;}
-.blue:hover {background-color: #22EAE0 ;}
-
-
-.black{color: #211830;}
-.black:hover {background-color: #211830 ;}
-
-
-.yellow{color: #FFFB96;}
-.yellow:hover {background-color: #FFFB96 ;}
-
-
-.green{color: #05FFA1;}
-.green:hover {background-color: #05FFA1 ;}
-
-
-.purple{color: #9D0FFD;}
-.purple:hover {	background-color: #9D0FFD;}
-
-
-.wrapperDL {
-	width: 92%;
-	max-width: 1400px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.download{
-	background-color: #FF7BE3;
-	color: white; 
-	width: 400px;
-	height: 100px;
-	line-height: 100px;
-}
-
-
 .mainFooter {
-	margin: 35px 10px 8px 0;
+	margin: 20px 10px 8px 0;
 	font-weight: bold;
 	text-align: right;
 	color:#FF71CE;
