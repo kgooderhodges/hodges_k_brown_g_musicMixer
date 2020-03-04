@@ -78,38 +78,37 @@ a {text-decoration: none;}
 }
 
 
-.pink {
-	color: #FF71CE;
-	background-color: #FF71CE ;}
-
-
-.blue{
-	color: #22EAE0;
-	background-color: #22EAE0 ;}
-
-
-.black{
+.pick1{
 	color: #211830;
 	background-color: #211830 ;
 }
 
+.pick2 {
+	color: #FF71CE;
+	background-color: #FF71CE ;
+}
 
-.yellow{
+
+.pick3{
 	color: #FFFB96;
 	background-color: #FFFB96 ;
 }
 
-
-.green{
+.pick4{
 	color: #05FFA1;
 	background-color: #05FFA1 ;
 }
 
-
-.purple{
+.pick5{
 	color: #9D0FFD;
 	background-color: #9D0FFD;
 }
+
+.pick6{
+	color: #22EAE0;
+	background-color: #22EAE0 ;
+}
+
 
 .divider {
 	width: 100%;
@@ -156,8 +155,14 @@ a {text-decoration: none;}
 	height: 190px;
 	margin: 10px 0;
 	border-radius: 10px;
+	display: flex;
+	justify-content: center;
 }
 
+
+.dropItem img {
+	height: 100%;
+}
 
 /* =========Gallery=========*/
 

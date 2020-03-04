@@ -1,96 +1,57 @@
-// this is a self invoking anonymous function
-// also called an IIFE
-
-//console.log('hello from javaScript!');
-
-// find elements in the Document
-// querySelectorAll is for multiple objects
-// querySelector is for a single object
-
-// function changeColor() {
-	//allIcons.textContent = "What is up? I am Script"; }
-
-//allIcons.forEach(item => item.addEventListener("click",changeColor));
- 
-//  document.querySelector('h1').textContent = "What is up? I am Scrript"
-
-//  (() => { })();
-
-	//allIcons = document.querySelectorAll(".svg"),
-	//allIcons = document.getElementsByClassName(".cls-1"),
-
-	//allSVGs = document.querySelectorAll(".svg"),
-
-
 (() => {
 
-
-let // this is a variable
-	allIcons = document.querySelectorAll(".cls-1"),
-	iconBG = document.querySelectorAll(".icon"),
-
-	black = document.querySelector(".black"),
-	pink = document.querySelector(".pink"),
-	yellow = document.querySelector(".yellow"),
-	green = document.querySelector(".green"),
-	purple = document.querySelector(".purple"),
-	blue = document.querySelector(".blue");
+	// variables & constants
+	const colors = ["#211830", "#FF71CE", "#FFFB96", "#05FFA1", "#9D0FFD", "#22EAE0"],
+	iconStyle = document.querySelectorAll(".cls-1"),
+	colorPicker = document.querySelectorAll(".colorPicker div"),
+	
+	iconBox = document.querySelectorAll(".icon"),
+	iconImage = document.querySelectorAll(".icon img"),
+	dropZones = document.querySelectorAll('.dropItem')
 
 
+//Functions
 
-// when you click on the icon divs it runs change color function
-black.addEventListener("click", changeBlack);
-black.addEventListener("click", changeBgBlack);
+	// color Changer
+	const changeColor = (index) => { iconStyle.forEach((icon) => {
+		icon.style.fill = colors[index]; });
+	};
 
-pink.addEventListener("click", changePink);
-pink.addEventListener("click", changeBg);
+	function startDrag(event) {
+		console.log('started a drag');
+		event.dataTransfer.setData("text/plain", this.id);
+	}
 
-yellow.addEventListener("click", changeYellow);
-yellow.addEventListener("click", changeBg);
+	function allowDragOver(event) {
+		event.preventDefault();
+		console.log('you drug me');
+	}
 
-green.addEventListener("click", changeGreen);
-green.addEventListener("click", changeBg);
-
-purple.addEventListener("click", changePurple);
-purple.addEventListener("click", changeBg);
-
-blue.addEventListener("click", changeBlue);
-blue.addEventListener("click", changeBg);
-
+	function allowDrop(event) {
+		if (!this.hasChildNodes()) {
+			console.log('you dropped me');
+			let currentIcon = event.dataTransfer.getData("text/plain");
+			event.target.appendChild(document.querySelector(`#${currentIcon}`));
+		}
+	}
 
 
-// changes color of all icons
-function changeBlack() { allIcons.forEach((i) => {
-	i.style.fill = '#211830';});
-};
 
-function changeBgBlack() { iconBG.forEach((b) => {
-	b.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'; });
-};
+// Event handlers
+	
+	// color Changer
+	colorPicker.forEach((pick, index) => {
+		pick.addEventListener('click', function () {
+			changeColor(index);
+		});
+	});
 
-function changePink() { allIcons.forEach((i) => {
-	i.style.fill = '#FF71CE';});
-};
+	iconImage.forEach(icon => icon.addEventListener('dragstart', startDrag));
 
-function changeYellow() { allIcons.forEach((i) => {
-	i.style.fill = '#FFFB96';});
-};
+	dropZones.forEach(zone => zone.addEventListener('dragover', allowDragOver));
 
-function changeGreen() { allIcons.forEach((i) => {
-	i.style.fill = '#05FFA1';});
-};
-
-function changePurple() { allIcons.forEach((i) => {
-	i.style.fill = '#9D0FFD';});
-};
-
-function changeBlue() { allIcons.forEach((i) => {
-	i.style.fill = '#22EAE0'; });
-};
-
-function changeBg() { iconBG.forEach((a) => {
-	a.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; });
-};
-
+	dropZones.forEach(zone => zone.addEventListener('drop', allowDrop));//
  
 })();
+
+
