@@ -11,6 +11,15 @@ svg {
 
 a {text-decoration: none;}
 
+p {
+	font-family: 'Tahoma', Arial, sans-serif;
+	font-weight: bold;
+	font-size: 32px;
+	text-transform: uppercase;
+	color: white;
+	text-shadow: 3px 3px 3px rgba(0,0,0, .5);
+
+}
 
 .hidden {display:none;}
 
@@ -48,67 +57,36 @@ a {text-decoration: none;}
 	align-items: center;
 	width: 50%;
 }
-/* =========Colours=========*/
 
-.colorPicker {
+.vibeCheck {
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+	padding: 10px;
 	width: 35%;
 	display: flex;
 	flex-direction: row;
-	align-items: flex-end;
-	justify-content: space-between;
+	justify-content: space-around;
+	align-items: center;
 	flex-wrap: wrap;
 }
 
+.vibeCheck >.icon{
+	display: flex;
+	align-items: center;
+	background: transparent;
+	margin:0 auto;
+	height: 100px;
+	width: 100px;	
+}
 
-.color{
-	height: 80px;
-	width: 120px;
-	margin: 10px;
+
+.vibeCheck p{
+	display: flex;
+	justify-content: center;
 	text-align: center;
-	line-height: 80px;
-	font-size: 20px;
-	font-weight: bold;
-	border-radius: 10px;
-	transition: text-shadow .2s ease-in-out;
+	width: 100%;
+	margin-bottom: 10px;	
 }
-
-.color:hover {
-	cursor: pointer; 	
-	text-shadow: 3px 3px 3px rgba(0,0,0, .5);
-}
-
-
-.pick1{
-	color: #211830;
-	background-color: #211830 ;
-}
-
-.pick2 {
-	color: #FF71CE;
-	background-color: #FF71CE ;
-}
-
-
-.pick3{
-	color: #FFFB96;
-	background-color: #FFFB96 ;
-}
-
-.pick4{
-	color: #05FFA1;
-	background-color: #05FFA1 ;
-}
-
-.pick5{
-	color: #9D0FFD;
-	background-color: #9D0FFD;
-}
-
-.pick6{
-	color: #22EAE0;
-	background-color: #22EAE0 ;
-}
-
 
 .divider {
 	width: 100%;
@@ -131,14 +109,72 @@ a {text-decoration: none;}
 }
 
 .mainMusic {
-	/*background-image: url(../images/musicBG.svg)
-	Background to make that has the tv static look */
-	/*background-color: rgba(34, 234, 224, 0.8);cyan*/
-	background-color: rgba(0, 0, 0, 0.8);
+	background: url(../images/mainBG.gif);
 	width: 45%;
 	height: 400px;
 	margin: 10px 0;
 	border-radius: 10px;
+	position: relative;
+	justify-content: flex-end;
+	display: flex;
+	flex-direction: column;
+}
+
+.overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+.controls {
+	background-color: #696969; 
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+  border-radius: 0px 0px 10px 10px;
+	opacity: .9;
+}
+
+.controls img{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 5px;
+	width: 20px;
+}
+.controls img:hover{
+  	scale: 1.2;
+	cursor: pointer;
+}
+
+.squiggle{
+	transition: background .5s ease-in-out;
+	background-image: url(../images/squiggleBG.gif);
+}
+.rain{
+	transition: background .5s ease-in-out;
+	background: url(../images/rainBG.gif);
+}
+.sun{
+	transition: background .5s ease-in-out;
+	background-image: url(../images/waveBG.gif);
+}
+
+.squiggle .overlay {
+	background-image: url(../images/vhsSmooth.gif);
+	opacity: .4;
+}
+
+.rain .overlay {
+	background-image: url(../images/vhsWobble.gif);
+	opacity: .4;
+}
+
+.sun .overlay {
+	background-image: url(../images/vhsStatic.gif);
+	opacity: .4;
 }
 
 .dropZone {
@@ -150,30 +186,56 @@ a {text-decoration: none;}
 }
 
 .dropItem {
-	background-color: rgba(34, 234, 224, 0.8);/*cyan*/
+	background-color: rgba(0, 0, 0, 0.8);/*cyan*/
 	width: 30%;
 	height: 190px;
 	margin: 10px 0;
 	border-radius: 10px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	position: relative;
 }
-
 
 .dropItem img {
 	height: 100%;
 }
 
+.loading {
+	opacity: .8;
+	position: relative;
+}
+
+.loading p {
+	display: block;
+	position: absolute;
+	left: 14px;
+	color: pink;
+	text-align: center;
+	line-height: 14px;
+}
+
+.stop {
+	font-size: 48px;
+	color: #696969;
+	text-align: center;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	opacity: 0;
+
+}
+
+.dropItem:hover .stop {
+	cursor: pointer;
+	opacity: .6;
+}
+
+
 /* =========Gallery=========*/
 
 .info {
-	font-family: 'Tahoma', Arial, sans-serif;
-	font-weight: bold;
-	font-size: 32px;
 	text-align: center;
-	text-transform: uppercase;
-	color: white;
-	text-shadow: 3px 3px 3px rgba(0,0,0, .5);
 	margin-bottom: 20px;
 }
 
@@ -198,12 +260,21 @@ a {text-decoration: none;}
 	align-items: center;
 }
 
+.icon img {
+	width: 100%;
+}
 
-.mainFooter {
+.icon:hover {
+	cursor: pointer;
+}
+
+
+.mainFooter p{
 	margin: 20px 10px 8px 0;
 	font-weight: bold;
 	text-align: right;
 	color:#FF71CE;
+	font-size: 12px;
 }
 
 

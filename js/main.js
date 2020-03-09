@@ -1,28 +1,54 @@
 (() => {
 
 	// variables & constants
-	const colors = ["#211830", "#FF71CE", "#FFFB96", "#05FFA1", "#9D0FFD", "#22EAE0"],
-
-		iconStyle = document.querySelectorAll(".cls-1"),
-		colorPicker = document.querySelectorAll(".colorPicker div"),
-		
-		iconBox = document.querySelectorAll(".icon"),
-		iconAudio = document.querySelector('audio'),
+	const 
+		iconBox = document.querySelectorAll(".icon"),	
 		iconImage = document.querySelectorAll(".icon img"),
-		dropZones = document.querySelectorAll('.dropItem');
-
+		dropZones = document.querySelectorAll('.dropItem'),
+		loading = document.querySelectorAll('.loading'),
+		vibes = document.querySelectorAll('.vibeCheck .vibe'),
+		sqiggleVibe = document.querySelector('#squiggle'),
+		rainVibe = document.querySelector('#rain'),
+		sunVibe = document.querySelector('#sun'),
+		videoBox = document.querySelector('.mainMusic'),
+		allAudio = document.querySelectorAll("audio");
 
 //Functions
 
-	// color Changer
-	const changeColor = (index) => { iconStyle.forEach((icon) => {
-		icon.style.fill = colors[index]; });
+//Loop Contnually playing
+	setInterval(playTrack, 10666);
+
+
+	sqiggleVibe.addEventListener('click', function(){
+		videoBox.classList.add("squiggle");
+	});
+
+
+	function vibeStart() {
+		
+		let oldAudio = document.querySelector('.vibe audio');
+		console.log(oldAudio);
+			this.removeChild(oldAudio);
+
+		let currentVibe = this.id;
+
+		videoBox.classList.add(currentVibe);		
+				
+		let audio = document.createElement('audio');	
+		this.appendChild(audio);
+		
+		let audioSource = `audio/${currentVibe}.mp3`;	
+			audio.src = audioSource;
+			audio.play();	
 	};
 
-	function startDrag(event) {
+			
+	function startDrag(event) {	
 		console.log('started a drag');
 		event.dataTransfer.setData("text/plain", this.id);
+		console.log(this.id);
 	};
+
 
 	function allowDragOver(event) {
 		event.preventDefault();
@@ -30,42 +56,52 @@
 	};
 
 
-
-
-	function allowDrop(event) {
-		//if (this.children.length > 0){return} {}
+	function songDrop(event) {
+		if (this.children.length > 2){return}
 			console.log('you dropped me');
 			let currentIcon = event.dataTransfer.getData("text/plain");	
-			event.target.appendChild(document.querySelector(`#${currentIcon}`));		
+			let audio = document.createElement('audio');
 			
+/*			let p = document.querySelector('.dropItem p');
+			p.classList.add('loading');*/
 
-			let audioSource = `audio/${currentIcon}.mp3`;
-			iconAudio.src = audioSource;
-			iconAudio.load();
-			iconAudio.play();
+			event.target.classList.add('loading');		
+			
+			event.target.appendChild(audio);
+			event.target.appendChild(document.querySelector(`#${currentIcon}`));
+			
+			let audioSource = `audio/${currentIcon}.mp3`;	
+			audio.src = audioSource;		
 	};
+
+
+	function playTrack() {
+		dropZones.forEach(zone => zone.classList.remove('loading'));
+		let songs = document.querySelectorAll('audio'); 
+		songs.forEach((track, index) => {
+			songs[index].currentTime = 0;
+			songs[index].play();
+		});
+	};
+
+	function StopTrack() {
+
+	}
+
+
 
 // Event handlers
 	
-	// color Changer
-	colorPicker.forEach((pick, index) => {
-		pick.addEventListener('click', function () {
-			changeColor(index);
-		});
-	});
 
 	iconImage.forEach(icon => icon.addEventListener('dragstart', startDrag));
 
 	dropZones.forEach(zone => zone.addEventListener('dragover', allowDragOver));
 
-	dropZones.forEach(zone => zone.addEventListener('drop', allowDrop));//
+	dropZones.forEach(zone => zone.addEventListener('drop', songDrop));//
 
-	//iconAudio.forEach(zone => zone.addEventListener('drop', allowDrop));
+	vibes.forEach(vibe => vibe.addEventListener('click', vibeStart));//
 
-	iconBox.forEach(zone => zone.addEventListener('dragover', allowDragOver));
 
-	iconBox.forEach(zone => zone.addEventListener('drop', allowDrop,));//
- 
 })();
 
 
