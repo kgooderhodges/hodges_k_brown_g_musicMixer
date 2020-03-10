@@ -1,37 +1,33 @@
 (() => {
 
 	// variables & constants
-	const 
-		iconBox = document.querySelectorAll(".icon"),	
+	const 	
 		iconImage = document.querySelectorAll(".icon img"),
+		
 		dropZones = document.querySelectorAll('.dropItem'),
 		loading = document.querySelectorAll('.loading'),
+		
 		vibes = document.querySelectorAll('.vibeCheck .vibe'),
-		sqiggleVibe = document.querySelector('#squiggle'),
-		rainVibe = document.querySelector('#rain'),
-		sunVibe = document.querySelector('#sun'),
 		videoBox = document.querySelector('.mainMusic'),
-		allAudio = document.querySelectorAll("audio");
+		
+		allAudio = document.querySelectorAll("audio"),
+		masterStop = document.querySelector('#masterStop'),
+		stop = document.querySelectorAll('.stop');
 
 //Functions
 
 //Loop Contnually playing
 	setInterval(playTrack, 10666);
 
+	function vibeStart() {	
 
-	sqiggleVibe.addEventListener('click', function(){
-		videoBox.classList.add("squiggle");
-	});
-
-
-	function vibeStart() {
-		
-		let oldAudio = document.querySelector('.vibe audio');
-		console.log(oldAudio);
-			this.removeChild(oldAudio);
+        let tracks = this.parentNode.querySelectorAll('audio')
+        tracks.forEach(track => track.parentNode.removeChild(track));
+        console.log(tracks);
 
 		let currentVibe = this.id;
 
+		videoBox.classList.remove('squiggle','rain','sun')
 		videoBox.classList.add(currentVibe);		
 				
 		let audio = document.createElement('audio');	
@@ -46,7 +42,12 @@
 	function startDrag(event) {	
 		console.log('started a drag');
 		event.dataTransfer.setData("text/plain", this.id);
-		console.log(this.id);
+		console.log();
+
+/* takes away musi when you start drag but may be too buggy
+		let audio = event.target.parentNode.querySelector('audio');
+			if (event.target.parentNode.children.length > 1)
+				{audio.parentNode.removeChild(audio)};*/
 	};
 
 
@@ -57,16 +58,14 @@
 
 
 	function songDrop(event) {
+		event.preventDefault();
 		if (this.children.length > 2){return}
 			console.log('you dropped me');
 			let currentIcon = event.dataTransfer.getData("text/plain");	
 			let audio = document.createElement('audio');
-			
-/*			let p = document.querySelector('.dropItem p');
-			p.classList.add('loading');*/
+			console.log(event.target);
 
 			event.target.classList.add('loading');		
-			
 			event.target.appendChild(audio);
 			event.target.appendChild(document.querySelector(`#${currentIcon}`));
 			
@@ -84,11 +83,27 @@
 		});
 	};
 
-	function StopTrack() {
+	function stopTrack() {
+		let track = this.parentNode.querySelector('audio');
+			track.parentNode.removeChild(track);
+		
+		let icon = this.parentNode.querySelector('img').id;
+		console.log(icon);
+		
+		let iconBox = document.querySelectorAll(".icon");
+		iconBox.forEach(box => { 
+			if (box.children.length < 1){ 
+				box.appendChild(document.querySelector(`#${icon}`));
+				let trackBox = this.parentNode;
+				trackBox.classList.remove('loading');
+			}});
+		};
 
-	}
-
-
+	function stopAll() {
+		let tracks = document.querySelectorAll('audio');
+		tracks.forEach(track => track.parentNode.removeChild(track));
+		videoBox.classList.remove('squiggle','rain','sun')
+	};
 
 // Event handlers
 	
@@ -101,6 +116,9 @@
 
 	vibes.forEach(vibe => vibe.addEventListener('click', vibeStart));//
 
+	stop.forEach(x => x.addEventListener('click', stopTrack));
+
+	masterStop.addEventListener('click', stopAll);
 
 })();
 
