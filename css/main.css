@@ -110,6 +110,7 @@ p {
 
 .mainMusic {
 	background: url(../images/mainBG.gif);
+	background-size: cover;
 	width: 45%;
 	height: 400px;
 	margin: 10px 0;
@@ -133,7 +134,7 @@ p {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-  border-radius: 0px 0px 10px 10px;
+  	border-radius: 0px 0px 10px 10px;
 	opacity: .9;
 }
 
@@ -152,19 +153,27 @@ p {
 .squiggle{
 	transition: background .5s ease-in-out;
 	background-image: url(../images/squiggleBG.gif);
+	background-size: cover;
+	background-position: top;
 }
+
 .rain{
 	transition: background .5s ease-in-out;
 	background: url(../images/rainBG.gif);
+	background-size: cover;
+	background-position: center;
 }
+
 .sun{
 	transition: background .5s ease-in-out;
 	background-image: url(../images/waveBG.gif);
+	background-size: cover;
+	background-position: center;
 }
 
 .squiggle .overlay {
 	background-image: url(../images/vhsSmooth.gif);
-	opacity: .4;
+	opacity: .2;
 }
 
 .rain .overlay {
@@ -174,7 +183,7 @@ p {
 
 .sun .overlay {
 	background-image: url(../images/vhsStatic.gif);
-	opacity: .4;
+	opacity: .2;
 }
 
 .dropZone {
@@ -221,7 +230,7 @@ p {
 	text-align: center;
 	position: absolute;
 	right: 10px;
-	top: 0px;
+	top: -10px;
 	opacity: 0;
 
 }
