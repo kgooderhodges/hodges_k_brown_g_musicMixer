@@ -22,13 +22,13 @@
         <div class="vibeCheck">
           <p>Vibe Check</p>
           <div id="squiggle" class="icon vibe">
-            <img src="images/squiggle.svg" />
+            <img src="images/squiggle.svg" draggable="false"/>
           </div>
           <div id="rain" class="icon vibe">
-            <img src="images/rain.svg" />
+            <img src="images/rain.svg" draggable="false"/>
           </div>
           <div id="sun" class="icon vibe">
-            <img src="images/sun.svg" />
+            <img src="images/sun.svg" draggable="false"/>
           </div>
         </div>
       </header>
@@ -36,9 +36,10 @@
     </div>
 
     <div class="divider"></div>
+    
     <div class="wrapper">
+      
       <!-- ++++++Icon Start+++++++ -->
-
       <section class="dropCon">
         <div class="dropZone">
           <div class="dropItem">
@@ -88,82 +89,82 @@
         <h2 class="hidden">Gallery</h2>
 
         <div class="icon">
-          <img id="vhs" src="images/vhs.svg" />
+          <img data-index="0" id="vhs" src="images/vhs.svg" />
         </div>
 
         <div class="icon">
-          <img id="drum" src="images/drum.svg" />
+          <img data-index="1" id="drum" src="images/drum.svg" />
+        </div>
+
+        <div" class="icon">
+          <img data-index="2" id="cassette" src="images/cassette.svg" />
+        </div">
+
+        <div class="icon">
+          <img data-index="3" id="guitar" src="images/guitar.svg" />
         </div>
 
         <div class="icon">
-          <img id="cassette" src="images/cassette.svg" />
+          <img data-index="4" id="keytar" src="images/keytar.svg" />
         </div>
 
         <div class="icon">
-          <img id="guitar" src="images/guitar.svg" />
+          <img data-index="5" id="mic" src="images/mic.svg" />
         </div>
 
         <div class="icon">
-          <img id="keytar" src="images/keytar.svg" />
+          <img data-index="6" id="phone" src="images/phone.svg" />
         </div>
 
         <div class="icon">
-          <img id="mic" src="images/mic.svg" />
+          <img data-index="7" id="sax" src="images/sax.svg" />
         </div>
 
         <div class="icon">
-          <img id="phone" src="images/phone.svg" />
+          <img data-index="8" id="soundpad" src="images/soundpad.svg" />
         </div>
 
         <div class="icon">
-          <img id="sax" src="images/sax.svg" />
+          <img data-index="9" id="trumpet" src="images/trumpet.svg" />
+        </div>
+        <div class="icon">
+          <img data-index="10" id="bart" src="images/bart.svg" />
         </div>
 
         <div class="icon">
-          <img id="soundpad" src="images/soundpad.svg" />
+          <img data-index="11" id="gameboy" src="images/gameboy.svg" />
         </div>
 
         <div class="icon">
-          <img id="trumpet" src="images/trumpet.svg" />
-        </div>
-        <div class="icon">
-          <img id="bart" src="images/bart.svg" />
+          <img data-index="12" id="internet" src="images/internet.svg" />
         </div>
 
         <div class="icon">
-          <img id="gameboy" src="images/gameboy.svg" />
+          <img data-index="13" id="japan" src="images/japan.svg" />
         </div>
 
         <div class="icon">
-          <img id="internet" src="images/internet.svg" />
+          <img data-index="14" id="note" src="images/note.svg" />
         </div>
 
         <div class="icon">
-          <img id="japan" src="images/japan.svg" />
+          <img data-index="115" id="palm" src="images/palm.svg" />
         </div>
 
         <div class="icon">
-          <img id="note" src="images/note.svg" />
+          <img data-index="16" id="playStation" src="images/playStation.svg" />
         </div>
 
         <div class="icon">
-          <img id="palm" src="images/palm.svg" />
+          <img data-index="17" id="shades" src="images/shades.svg" />
         </div>
 
         <div class="icon">
-          <img id="playStation" src="images/playStation.svg" />
+          <img data-index="18" id="wave" src="images/wave.svg" />
         </div>
 
         <div class="icon">
-          <img id="shades" src="images/shades.svg" />
-        </div>
-
-        <div class="icon">
-          <img id="wave" src="images/wave.svg" />
-        </div>
-
-        <div class="icon">
-          <img id="alarm" src="images/alarm.svg" />
+          <img data-index="19" id="alarm" src="images/alarm.svg" />
         </div>
       </section>
     </div>
@@ -177,3 +178,6 @@
     <script src="js/main.js"></script>
   </body>
 </html>
+<!-- 
+track.parentNode.classList.remove('loading');
+ -->
