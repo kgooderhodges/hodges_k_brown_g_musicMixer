@@ -1,11 +1,9 @@
 (() => {
   // variables & constants
-  const iconImage = document.querySelectorAll(".icon img"),
+  const iconImage = document.querySelectorAll(".gallery .icon img"),
     dropZones = document.querySelectorAll(".dropItem"),
-    loading = document.querySelectorAll(".loading"),
     vibes = document.querySelectorAll(".vibeCheck .vibe"),
     videoBox = document.querySelector(".mainMusic"),
-    allAudio = document.querySelectorAll("audio"),
     masterStop = document.querySelector("#masterStop"),
     stop = document.querySelectorAll(".stop");
 
@@ -14,88 +12,88 @@
   //Loop Contnually playing
   setInterval(playTrack, 10666);
 
+  function playTrack() {
+    dropZones.forEach(zone => zone.classList.remove("loading"));    
+    let songs = document.querySelectorAll("audio");
+    songs.forEach((track, index) => {
+      track.currentTime = 0;
+      songs[index].play();
+    });
+  }
+
   function vibeStart() {
     let tracks = this.parentNode.querySelectorAll("audio");
     tracks.forEach(track => track.parentNode.removeChild(track));
     console.log(tracks);
 
     let currentVibe = this.id;
-
     videoBox.classList.remove("squiggle", "rain", "sun");
     videoBox.classList.add(currentVibe);
 
     let audio = document.createElement("audio");
     this.appendChild(audio);
 
-    let audioSource = `audio/${currentVibe}.mp3`;
-    audio.src = audioSource;
+    audio.src = `audio/${currentVibe}.mp3`;
     audio.play();
   }
 
   function startDrag(event) {
-    console.log("started a drag");
+    console.log('you picked',(this.id))
     event.dataTransfer.setData("text/plain", this.id);
-    console.log();
-
-    /* takes away musi when you start drag but may be too buggy
-		let audio = event.target.parentNode.querySelector('audio');
-			if (event.target.parentNode.children.length > 1)
-				{audio.parentNode.removeChild(audio)};*/
   }
-
   function allowDragOver(event) {
     event.preventDefault();
-    console.log("you drug me");
   }
-
   function songDrop(event) {
     event.preventDefault();
     if (this.children.length > 2) {
       return;
     }
-    console.log("you dropped me");
+    console.log("Analysing Choice");
+    
     let currentIcon = event.dataTransfer.getData("text/plain");
     let audio = document.createElement("audio");
-    console.log(event.target);
 
     event.target.classList.add("loading");
     event.target.appendChild(audio);
     event.target.appendChild(document.querySelector(`#${currentIcon}`));
+    audio.src = `audio/${currentIcon}.mp3`;
+    audio.load()
 
-    let audioSource = `audio/${currentIcon}.mp3`;
-    audio.src = audioSource;
-  }
-
-  function playTrack() {
-    dropZones.forEach(zone => zone.classList.remove("loading"));
-    let songs = document.querySelectorAll("audio");
-    songs.forEach((track, index) => {
-      songs[index].currentTime = 0;
-      songs[index].play();
-    });
+   this.querySelector("img").draggable = false;
   }
 
   function stopTrack() {
     let track = this.parentNode.querySelector("audio");
     track.parentNode.removeChild(track);
 
-    let icon = this.parentNode.querySelector("img").id;
-    console.log(icon);
+    let trackBox = this.parentNode;
+      trackBox.classList.remove("loading");
 
-    let iconBox = document.querySelectorAll(".icon");
-    iconBox.forEach(box => {
-      if (box.children.length < 1) {
-        box.appendChild(document.querySelector(`#${icon}`));
-        let trackBox = this.parentNode;
-        trackBox.classList.remove("loading");
-      }
-    });
+    let icon = this.parentNode.querySelector("img");
+    icon.draggable = true;
+    console.log((icon.id), 'stopped');
+
+    let iconBox = document.querySelectorAll(".gallery .icon");
+      iconBox[icon.dataset.index].appendChild(icon);
+    
   }
 
-  function stopAll() {
+  function stopAll() {    
+    videoBox.classList.remove(1);
+    //"squiggle", "rain", "sun"
     let tracks = document.querySelectorAll("audio");
-    tracks.forEach(track => track.parentNode.removeChild(track));
-    videoBox.classList.remove("squiggle", "rain", "sun");
+    tracks.forEach(track => {
+      track.parentNode.classList.remove("loading");
+      track.parentNode.removeChild(track);
+    });  
+    
+    let iconBoxes = document.querySelectorAll(".gallery .icon");
+	  let currentIcons = document.querySelectorAll(".dropItem img");
+	  currentIcons.forEach(icon => {
+      icon.draggable = true;
+      iconBoxes[icon.dataset.index].appendChild(icon);
+    });    
   }
 
   // Event handlers
